@@ -9,11 +9,11 @@ let browser: Browser;
 setDefaultTimeout(60*1000);
 
 BeforeAll(async function () {
-    dotenv.config({path: `{process.cwd()}/env/.env/${process.env.environment ?? "dev"}`});
-    console.log(`Running tests on environment: ${process.env.environment ?? "dev"}`);
-
+    dotenv.config({path: `${process.cwd()}/env/.env.${process.env.environment ?? "qa"}`});
+    console.log(`Running tests on environment: ${process.env.environment ?? "qa"}`);
+    debugger;
     browser = await chromium.launch({ 
-        headless: process.env.HEADLESSS?.toLowerCase() == "true",
+        headless: process.env.HEADLESS?.toLowerCase() == "true",
     });
     logger.info("Browser launched successfully");
 });
@@ -45,4 +45,4 @@ After(async function (scenario) {
 AfterAll(async function () { 
     await browser.close();
     logger.info("Browser closed successfully");
-});      
+});
