@@ -1,10 +1,15 @@
 {
   "name": "playwright-automation",
-  "version": "",
-  "description": "",
+  "version": "1.0.0",
+  "description": "automation framework using playwright and cucumber",
   "author": "Anirban Nag",
   "scripts": {
-    "test": "echo \"No test specified\" && exit 0"
+    "report": "node index.js",
+    "install-playwright": "npx playwright install",
+    "tag.sauceDemo": "npm run install-playwright && cucumber-js --tags \"@UI\" --config=cucumber.json && npm run report",
+    "tag.automationStore": "npm run install-playwright && cucumber-js --tags \"@UI\" --config=cucumber.json && npm run report",
+    "test.sauceDemo": "cross-env environment=saucedemo npm run tag.sauceDemo",
+    "test.automationStore": "cross-env environment=automationStore npm run tag.automationStore"
   },
   "dependencies": {
     "@cucumber/cucumber": "^10.0.0",
